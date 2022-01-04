@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{508DA83A-5A12-4BA6-A4F7-9146C8784101}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.16299.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>6.2.2_msvc2019_64</QtInstall>
+    <QtModules>
+    </QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>6.2.2_msvc2019_64</QtInstall>
+    <QtModules>
+    </QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <OutDir>$(SolutionDir)lib</OutDir>
+    <TargetName>Frameworkd</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutDir>$(SolutionDir)lib</OutDir>
+    <TargetName>Framework</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>$(Qt_LIBPATH_);$(SolutionDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir).;$(SolutionDir)include;$(SolutionDir)Live2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir).;$(SolutionDir)include;$(SolutionDir)Live2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CubismCdiJson.cpp" />
+    <ClCompile Include="CubismDefaultParameterId.cpp" />
+    <ClCompile Include="CubismFramework.cpp" />
+    <ClCompile Include="CubismModelSettingJson.cpp" />
+    <ClCompile Include="Effect\CubismBreath.cpp" />
+    <ClCompile Include="Effect\CubismEyeBlink.cpp" />
+    <ClCompile Include="Effect\CubismPose.cpp" />
+    <ClCompile Include="Id\CubismId.cpp" />
+    <ClCompile Include="Id\CubismIdManager.cpp" />
+    <ClCompile Include="Math\CubismMath.cpp" />
+    <ClCompile Include="Math\CubismMatrix44.cpp" />
+    <ClCompile Include="Math\CubismModelMatrix.cpp" />
+    <ClCompile Include="Math\CubismTargetPoint.cpp" />
+    <ClCompile Include="Math\CubismVector2.cpp" />
+    <ClCompile Include="Math\CubismViewMatrix.cpp" />
+    <ClCompile Include="Model\CubismMoc.cpp" />
+    <ClCompile Include="Model\CubismModel.cpp" />
+    <ClCompile Include="Model\CubismModelUserData.cpp" />
+    <ClCompile Include="Model\CubismModelUserDataJson.cpp" />
+    <ClCompile Include="Model\CubismUserModel.cpp" />
+    <ClCompile Include="Motion\ACubismMotion.cpp" />
+    <ClCompile Include="Motion\CubismExpressionMotion.cpp" />
+    <ClCompile Include="Motion\CubismMotion.cpp" />
+    <ClCompile Include="Motion\CubismMotionJson.cpp" />
+    <ClCompile Include="Motion\CubismMotionManager.cpp" />
+    <ClCompile Include="Motion\CubismMotionQueueEntry.cpp" />
+    <ClCompile Include="Motion\CubismMotionQueueManager.cpp" />
+    <ClCompile Include="Physics\CubismPhysics.cpp" />
+    <ClCompile Include="Physics\CubismPhysicsJson.cpp" />
+    <ClCompile Include="Rendering\CubismRenderer.cpp" />
+    <ClCompile Include="Rendering\OpenGL\CubismOffscreenSurface_OpenGLES2.cpp" />
+    <ClCompile Include="Rendering\OpenGL\CubismRenderer_OpenGLES2.cpp" />
+    <ClCompile Include="Type\csmRectF.cpp" />
+    <ClCompile Include="Type\csmString.cpp" />
+    <ClCompile Include="Utils\CubismDebug.cpp" />
+    <ClCompile Include="Utils\CubismJson.cpp" />
+    <ClCompile Include="Utils\CubismString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CubismCdiJson.hpp" />
+    <ClInclude Include="CubismDefaultParameterId.hpp" />
+    <ClInclude Include="CubismFramework.hpp" />
+    <ClInclude Include="CubismFrameworkConfig.hpp" />
+    <ClInclude Include="CubismModelSettingJson.hpp" />
+    <ClInclude Include="Effect\CubismBreath.hpp" />
+    <ClInclude Include="Effect\CubismEyeBlink.hpp" />
+    <ClInclude Include="Effect\CubismPose.hpp" />
+    <ClInclude Include="ICubismAllocator.hpp" />
+    <ClInclude Include="ICubismModelSetting.hpp" />
+    <ClInclude Include="Id\CubismId.hpp" />
+    <ClInclude Include="Id\CubismIdManager.hpp" />
+    <ClInclude Include="Live2DCubismCore.hpp" />
+    <ClInclude Include="Math\CubismMath.hpp" />
+    <ClInclude Include="Math\CubismMatrix44.hpp" />
+    <ClInclude Include="Math\CubismModelMatrix.hpp" />
+    <ClInclude Include="Math\CubismTargetPoint.hpp" />
+    <ClInclude Include="Math\CubismVector2.hpp" />
+    <ClInclude Include="Math\CubismViewMatrix.hpp" />
+    <ClInclude Include="Model\CubismMoc.hpp" />
+    <ClInclude Include="Model\CubismModel.hpp" />
+    <ClInclude Include="Model\CubismModelUserData.hpp" />
+    <ClInclude Include="Model\CubismModelUserDataJson.hpp" />
+    <ClInclude Include="Model\CubismUserModel.hpp" />
+    <ClInclude Include="Motion\ACubismMotion.hpp" />
+    <ClInclude Include="Motion\CubismExpressionMotion.hpp" />
+    <ClInclude Include="Motion\CubismMotion.hpp" />
+    <ClInclude Include="Motion\CubismMotionInternal.hpp" />
+    <ClInclude Include="Motion\CubismMotionJson.hpp" />
+    <ClInclude Include="Motion\CubismMotionManager.hpp" />
+    <ClInclude Include="Motion\CubismMotionQueueEntry.hpp" />
+    <ClInclude Include="Motion\CubismMotionQueueManager.hpp" />
+    <ClInclude Include="Physics\CubismPhysics.hpp" />
+    <ClInclude Include="Physics\CubismPhysicsInternal.hpp" />
+    <ClInclude Include="Physics\CubismPhysicsJson.hpp" />
+    <ClInclude Include="Rendering\CubismRenderer.hpp" />
+    <ClInclude Include="Rendering\OpenGL\CubismOffscreenSurface_OpenGLES2.hpp" />
+    <ClInclude Include="Rendering\OpenGL\CubismRenderer_OpenGLES2.hpp" />
+    <ClInclude Include="Type\csmMap.hpp" />
+    <ClInclude Include="Type\csmRectF.hpp" />
+    <ClInclude Include="Type\csmString.hpp" />
+    <ClInclude Include="Type\csmVector.hpp" />
+    <ClInclude Include="Type\CubismBasicType.hpp" />
+    <ClInclude Include="Utils\CubismDebug.hpp" />
+    <ClInclude Include="Utils\CubismJson.hpp" />
+    <ClInclude Include="Utils\CubismString.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
