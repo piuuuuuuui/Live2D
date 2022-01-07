@@ -16,7 +16,7 @@
 #include <Rendering/OpenGL/CubismOffscreenSurface_OpenGLES2.hpp>
 #include <Type/csmRectF.hpp>
 
-#include "WavFileHandler.hpp"
+#include "SoundManager.hpp"
 
 class Model : public Csm::CubismUserModel {
  public:
@@ -66,7 +66,7 @@ class Model : public Csm::CubismUserModel {
   const Csm::CubismId* _idParamEyeBallX;
   const Csm::CubismId* _idParamEyeBallY;
 
-  WavFileHandler _wavFileHandler;
+  SoundManager _soundManager;
 
   Csm::Rendering::CubismOffscreenFrame_OpenGLES2 _renderBuffer;
 };

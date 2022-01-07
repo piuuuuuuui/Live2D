@@ -13,7 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Allocator.hpp" />
     <ClInclude Include="Config.hpp" />
-    <ClInclude Include="WavFileHandler.hpp" />
+    <ClInclude Include="SoundManager.hpp" />
     <QtMoc Include="Live2DWidget.hpp" />
     <ClInclude Include="Model.hpp" />
     <ClInclude Include="OpenGLManager.hpp" />
@@ -26,9 +26,9 @@
     <ClCompile Include="Live2DWidget.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Utilities.cpp" />
-    <ClCompile Include="WavFileHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.vcxproj">

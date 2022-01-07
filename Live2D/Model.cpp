@@ -16,6 +16,7 @@
 #include <Physics/CubismPhysics.hpp>
 #include <Rendering/OpenGL/CubismRenderer_OpenGLES2.hpp>
 #include <Utils/CubismString.hpp>
+#include <cmath>
 #include <fstream>
 #include <vector>
 
@@ -314,11 +315,10 @@ void Model::Update() {
     csmFloat32 value = 0.0f;
 
     // 状態更新/RMS値取得
-    _wavFileHandler.Update(deltaTimeSeconds);
-    value = _wavFileHandler.GetRms();
+    if (_soundManager.update(deltaTimeSeconds)) value = _soundManager.getRms();
 
     for (csmUint32 i = 0; i < _lipSyncIds.GetSize(); ++i) {
-      _model->AddParameterValue(_lipSyncIds[i], value, 5.0f);
+      _model->AddParameterValue(_lipSyncIds[i], value, 5.f);
     }
   }
 
@@ -331,7 +331,7 @@ void Model::Update() {
 }
 
 void Model::Play(const Csm::csmString& filePath) {
-  if (strcmp(filePath.GetRawString(), "") != 0) _wavFileHandler.Start(filePath);
+  _soundManager.start(filePath.GetRawString());
 }
 
 CubismMotionQueueEntryHandle Model::StartMotion(
@@ -464,10 +464,10 @@ void Model::SetupTextures() {
     }
     csmString texturePath = _modelSetting->GetTextureFileName(textureNumber);
     texturePath = _modelHomeDir + texturePath;
-    const csmInt32 glTextueNumber =
+    const csmInt32 glTextureNumber =
         TextureManager::CreateTextureFromPngFile(texturePath.GetRawString());
     GetRenderer<Rendering::CubismRenderer_OpenGLES2>()->BindTexture(
-        textureNumber, glTextueNumber);
+        textureNumber, glTextureNumber);
   }
   GetRenderer<Rendering::CubismRenderer_OpenGLES2>()->IsPremultipliedAlpha(
       false);

@@ -77,11 +77,13 @@ Live2DWidget::Live2DWidget() : QOpenGLWidget(nullptr), _hWnd((HWND)winId()) {
   _actionPlay->setText("Play");
   connect(_actionPlay, &QAction::triggered, this, [&]() {
     QString filePath = QFileDialog::getOpenFileName();
-    _model->Play(filePath.toLatin1().data());
-    _player->setAudioOutput(_audioOutput);
-    _player->setSource(QUrl::fromLocalFile(filePath));
-    _audioOutput->setVolume(50);
-    _player->play();
+    if (!filePath.isEmpty()) {
+      _model->Play(filePath.toLatin1().data());
+      _player->setAudioOutput(_audioOutput);
+      _player->setSource(QUrl::fromLocalFile(filePath));
+      _audioOutput->setVolume(50);
+      _player->play();
+    }
   });
   _menu->addAction(_actionPlay);
 
