@@ -7,7 +7,7 @@
 class Config {
  public:
   inline static const Csm::csmChar* ResourcesPath = "Resources";
-  inline static const Csm::csmChar* ModelDir = "Jiaran";
+  inline static const Csm::csmChar* ModelDir = "Diana";
   inline static const Csm::csmInt32 ModelDirSize =
       sizeof(ModelDir) / sizeof(Csm::csmChar*);
   inline static const Csm::csmInt32 Fps = 30;

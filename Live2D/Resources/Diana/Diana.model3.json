@@ -1,13 +1,12 @@
 {
 	"Version": 3,
 	"FileReferences": {
-		"Moc": "Jiaran.moc3",
+		"Moc": "Diana.moc3",
 		"Textures": [
-			"Jiaran.2048/texture_00.png"
+			"Diana.2048/texture_00.png"
 		],
-		"Physics": "Jiaran.physics3.json",
-		"Pose": "jiaran.pose3.json",
-		"DisplayInfo": "Jiaran.cdi3.json",
+		"Physics": "Diana.physics3.json",
+		"DisplayInfo": "Diana.cdi3.json",
 		"Expressions": [
 			{
 				"Name": "exp_00.exp3.json",
