@@ -9,37 +9,54 @@
 		"DisplayInfo": "Diana.cdi3.json",
 		"Expressions": [
 			{
-				"Name": "exp_00.exp3.json",
-				"File": "exp/exp_00.exp3.json"
+				"Name": "exp_00",
+				"File": "expressions/exp_00.exp3.json"
 			},
 			{
-				"Name": "exp_01.exp3.json",
-				"File": "exp/exp_01.exp3.json"
+				"Name": "exp_01",
+				"File": "expressions/exp_01.exp3.json"
 			},
 			{
-				"Name": "exp_02.exp3.json",
-				"File": "exp/exp_02.exp3.json"
+				"Name": "exp_02",
+				"File": "expressions/exp_02.exp3.json"
 			},
 			{
-				"Name": "exp_03.exp3.json",
-				"File": "exp/exp_03.exp3.json"
+				"Name": "exp_03",
+				"File": "expressions/exp_03.exp3.json"
 			}
-		]
+		],
+		"Motions": {
+			"Idle": [
+			  {
+					"File": "motions/idle.motion3.json",
+					"FadeInTime": 0.5,
+					"FadeOutTime": 0.5
+				}
+			],
+			"TapBody": [
+			  {
+					"File": "motions/running.motion3.json",
+					"FadeInTime": 0.5,
+					"FadeOutTime": 0.5,
+					"Sound": "sounds/running.wav"
+				}
+			]
+		}
 	},
 	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		},
 		{
 			"Target": "Parameter",
 			"Name": "EyeBlink",
 			"Ids": [
 				"ParamEyeLOpen",
 				"ParamEyeROpen"
-			]
-		},
-		{
-			"Target": "Parameter",
-			"Name": "LipSync",
-			"Ids": [
-				"ParamMouthOpenY"
 			]
 		}
 	],
