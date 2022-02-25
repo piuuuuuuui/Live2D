@@ -9,6 +9,7 @@
 #pragma once
 
 #include <GL/glew.h>
+
 #include <CubismFramework.hpp>
 #include <ICubismModelSetting.hpp>
 #include <Model/CubismUserModel.hpp>
@@ -17,6 +18,9 @@
 #include <Type/csmRectF.hpp>
 
 #include "SoundManager.hpp"
+
+class QAudioOutput;
+class QMediaPlayer;
 
 class Model : public Csm::CubismUserModel {
  public:
@@ -67,6 +71,8 @@ class Model : public Csm::CubismUserModel {
   const Csm::CubismId* _idParamEyeBallY;
 
   SoundManager _soundManager;
+  QMediaPlayer* _player = nullptr;
+  QAudioOutput* _audioOutput = nullptr;
 
   Csm::Rendering::CubismOffscreenFrame_OpenGLES2 _renderBuffer;
 };

@@ -48,10 +48,6 @@ Live2DWidget::Live2DWidget() : QOpenGLWidget(nullptr), _hWnd((HWND)winId()) {
   _timer->start();
   connect(_timer, &QTimer::timeout, this, [&] { update(); });
 
-  // Sound
-  _player = new QMediaPlayer;
-  _audioOutput = new QAudioOutput;
-
   // Menu
   _menu = new QMenu(this);
 
@@ -77,13 +73,7 @@ Live2DWidget::Live2DWidget() : QOpenGLWidget(nullptr), _hWnd((HWND)winId()) {
   _actionPlay->setText("Play");
   connect(_actionPlay, &QAction::triggered, this, [&]() {
     QString filePath = QFileDialog::getOpenFileName();
-    if (!filePath.isEmpty()) {
-      _model->Play(filePath.toLatin1().data());
-      _player->setAudioOutput(_audioOutput);
-      _player->setSource(QUrl::fromLocalFile(filePath));
-      _audioOutput->setVolume(50);
-      _player->play();
-    }
+    if (!filePath.isEmpty()) _model->Play(filePath.toLatin1().data());
   });
   _menu->addAction(_actionPlay);
 
@@ -103,11 +93,9 @@ Live2DWidget::Live2DWidget() : QOpenGLWidget(nullptr), _hWnd((HWND)winId()) {
 
   // Model
   std::string fileName = std::string(Config::ModelDir);
-  std::string dir = std::string(Config::ResourcesPath) + "/" + fileName + '/';
+  std::string dir = std::string(Config::ResourcesPath) + '/' + fileName + '/';
   std::string jsonName = fileName + ".model3.json";
-  if (_model) {
-    delete _model;
-  }
+  if (_model) delete _model;
   _model = new Model();
   _model->LoadAssets(dir.c_str(), jsonName.c_str());
   _viewMatrix.Scale(Config::ModelSize / _screenWidth,
@@ -158,9 +146,11 @@ void Live2DWidget::mouseReleaseEvent(QMouseEvent* e) {
   if (!res) return;
   if (e->button() == Qt::LeftButton) {
     leftPressed = false;
-    if (_model->HitTest("Head", _viewMatrix.InvertTransformX(_mouseX),
-                        _viewMatrix.InvertTransformY(_mouseY)))
-      _model->SetRandomExpression();
+    float x = _viewMatrix.InvertTransformX(_mouseX);
+    float y = _viewMatrix.InvertTransformY(_mouseY);
+    if (_model->HitTest("Head", x, y)) _model->SetRandomExpression();
+    if (_model->HitTest("Body", x, y))
+      _model->StartRandomMotion("TapBody", Config::PriorityForce);
   } else if (e->button() == Qt::RightButton) {
     rightPressed = false;
     _menu->exec(QCursor::pos());

@@ -7,8 +7,6 @@
 #include <QtOpenGLWidgets/QOpenGLWidget>
 
 class QAction;
-class QAudioOutput;
-class QMediaPlayer;
 class QMenu;
 class QMouseEvent;
 class QSystemTrayIcon;
@@ -39,9 +37,6 @@ class Live2DWidget : public QOpenGLWidget {
   float _mouseY = 0;
 
   QTimer *_timer;
-
-  QMediaPlayer *_player = nullptr;
-  QAudioOutput *_audioOutput = nullptr;
 
   QSystemTrayIcon *_trayIcon = nullptr;
   QMenu *_menu = nullptr;

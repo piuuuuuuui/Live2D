@@ -14,6 +14,8 @@
 #include <Motion/CubismMotion.hpp>
 #include <Motion/CubismMotionQueueEntry.hpp>
 #include <Physics/CubismPhysics.hpp>
+#include <QAudioOutput>
+#include <QMediaPlayer>
 #include <Rendering/OpenGL/CubismRenderer_OpenGLES2.hpp>
 #include <Utils/CubismString.hpp>
 #include <cmath>
@@ -332,6 +334,12 @@ void Model::Update() {
 
 void Model::Play(const Csm::csmString& filePath) {
   _soundManager.start(filePath.GetRawString());
+  QAudioOutput* _audioOutput = new QAudioOutput;
+  QMediaPlayer* _player = new QMediaPlayer;
+  _player->setAudioOutput(_audioOutput);
+  _player->setSource(QUrl::fromLocalFile(filePath.GetRawString()));
+  _audioOutput->setVolume(50);
+  _player->play();
 }
 
 CubismMotionQueueEntryHandle Model::StartMotion(
@@ -375,6 +383,10 @@ CubismMotionQueueEntryHandle Model::StartMotion(
   } else {
     motion->SetFinishedMotionHandler(onFinishedMotionHandler);
   }
+
+  // voice
+  csmString voice = _modelSetting->GetMotionSoundFileName(group, no);
+  if (strcmp(voice.GetRawString(), "") != 0) Play(_modelHomeDir + voice);
 
   return _motionManager->StartMotionPriority(motion, autoDelete, priority);
 }
