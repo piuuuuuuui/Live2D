@@ -150,7 +150,7 @@ void Live2DWidget::mouseReleaseEvent(QMouseEvent* e) {
     float y = _viewMatrix.InvertTransformY(_mouseY);
     if (_model->HitTest("Head", x, y)) _model->SetRandomExpression();
     if (_model->HitTest("Body", x, y))
-      _model->StartRandomMotion("TapBody", Config::PriorityForce);
+      _model->StartRandomMotion("TapBody", Config::PriorityNormal);
   } else if (e->button() == Qt::RightButton) {
     rightPressed = false;
     _menu->exec(QCursor::pos());
